@@ -1,5 +1,11 @@
 import { createRoot } from "react-dom/client";
 import "normalize.css";
 import App from "./App.jsx";
-
-createRoot(document.getElementById("root")).render(<App />);
+import store from "./store/index.js";
+import { Provider } from "react-redux";
+import "./reset.scss";
+createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <App></App>
+  </Provider>
+);

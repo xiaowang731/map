@@ -39,6 +39,15 @@ const route = [
     ),
   },
   {
+    path: "main",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        {HasToken()}
+        <Home />
+      </Suspense>
+    ),
+  },
+  {
     path: "*",
     element: (
       <Suspense fallback={<div>Loading...</div>}>

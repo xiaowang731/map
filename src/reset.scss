@@ -1,0 +1,33 @@
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 93.75%;
+    /* 小于 1200px 时，1rem = 15px */
+  }
+}
+
+@media (max-width: 992px) {
+  html {
+    font-size: 87.5%;
+    /* 小于 992px 时，1rem = 14px */
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 81.25%;
+    /* 小于 768px 时，1rem = 13px */
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 75%;
+    /* 小于 576px 时，1rem = 12px */
+  }
+}

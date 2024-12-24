@@ -1,0 +1,32 @@
+// src/pages/LoginPage.scss
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f2f5; // 背景色
+}
+
+.login-card {
+  width: 100%;
+  max-width: 25rem; // 最大宽度
+  padding: 1.25rem;
+  border-radius: .5rem;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  font-size: 1rem;
+  &:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+  }
+}
