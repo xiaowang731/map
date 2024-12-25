@@ -1,52 +1,89 @@
-// src/pages/LoginPage.js
-import React from "react";
-import { Form, Input, Button, Typography, Card } from "antd";
+import React, { useRef } from "react";
 import "./login.scss";
 
-const { Title } = Typography;
+import log1 from "@/assets/log1.svg";
+import log2 from "@/assets/log2.svg";
+import user from "@/assets/user.png";
+import password from "@/assets/password.png";
 
 const Login = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const container = useRef();
+  const toSignUp = () => {
+    container.current.classList.add("sign-up-mode");
   };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+  const toSignIn = () => {
+    container.current.classList.remove("sign-up-mode");
   };
-
   return (
-    <div className="login-container">
-      <Card className="login-card">
-        <Title level={2} className="login-title">
-          登录
-        </Title>
-        <Form
-          name="login"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: "请输入用户名!" }]}
-          >
-            <Input placeholder="用户名" />
-          </Form.Item>
-
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: "请输入密码!" }]}
-          >
-            <Input.Password placeholder="密码" />
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-button">
+    <div className="container" ref={container}>
+      <div className="panels-container">
+        <div className="panel left-panel">
+          <div className="panel-content ">
+            <h3>新来的?</h3>
+            <p>
+              In erveryone's heart, this is a person who can not remember,but
+              can not embrace and cherish
+            </p>
+            <button className="panel-btn" onClick={toSignUp}>
+              注册
+            </button>
+          </div>
+          <div className="panel-img">
+            <img src={log1} alt="" />
+          </div>
+        </div>
+        <div className="panel  right-panel">
+          <div className="panel-content ">
+            <h3>已有账号?</h3>
+            <p>
+              In erveryone's heart, this is a person who can not remember,but
+              can not embrace and cherish
+            </p>
+            <button className="panel-btn" onClick={toSignIn}>
               登录
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
+            </button>
+          </div>
+          <div className="panel-img">
+            <img src={log2} alt="" />
+          </div>
+        </div>
+      </div>
+      <div className="forms-container">
+        <div className="signin-signup">
+          <form action="#" className="sign-in-form">
+            <h2 className="form-title">登录</h2>
+            <div className="form-input">
+              <i>
+                <img src={user} />
+              </i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div className="form-input">
+              <i>
+                <img src={password} />
+              </i>
+              <input type="text" placeholder="password" />
+            </div>
+            <input type="submit" className="form-btn" value={"登录"} />
+          </form>
+          <form action="#" className="sign-up-form">
+            <h2 className="form-title">注册</h2>
+            <div className="form-input">
+              <i>
+                <img src={user} />
+              </i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div className="form-input">
+              <i>
+                <img src={password} />
+              </i>
+              <input type="text" placeholder="password" />
+            </div>
+            <input type="submit" className="form-btn" value={"注册"} />
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
