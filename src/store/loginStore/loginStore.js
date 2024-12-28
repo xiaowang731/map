@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const loginStore = createSlice({
   name: "loginStore",
-  initialState: { count: 0 },
+  initialState: {
+    TOKEN: "",
+  },
   reducers: {
     jia: (state) => {
       state.count += 1;
