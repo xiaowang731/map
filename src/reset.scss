@@ -3,7 +3,9 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
-
+img {
+  -webkit-user-drag: none;
+}
 @media (max-width: 1200px) {
   html {
     font-size: 93.75%;
