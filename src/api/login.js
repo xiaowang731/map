@@ -5,5 +5,5 @@ export const reqLogImg = () => {
 };
 
 export const reqLogin = (params) => {
-  return request.post("/api/v1/login", params);
+  return request.post("/v1/login", params);
 };
