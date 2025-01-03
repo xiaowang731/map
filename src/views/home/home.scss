@@ -1,0 +1,101 @@
+.home-container {
+  display: flex;
+  height: 100vh;
+  transition: all 0.1s ease;
+  position: relative; // 为了确保定位按钮时正确
+  overflow: hidden;
+
+  // 左侧导航
+  .sidebar {
+    width: 250px; /* 默认展开时的宽度 */
+    background-color: #f4f2ec;
+    position: relative;
+    color: rgb(0, 0, 0);
+    border-right: 1px solid rgb(210, 192, 192);
+    transition: width 0.1s ease; /* 控制展开/折叠的平滑动画 */
+
+    // 切换按钮
+    .toggle-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -17px; // 按钮位于右侧上方
+      width: 16px;
+      height: 40px;
+      background-color: #ffffff;
+      border: none;
+      cursor: pointer;
+      border-radius: 0 5px 5px 0;
+      z-index: 10; /* 确保按钮在右侧内容区域上层 */
+      &:hover {
+        background-color: #fff5f5;
+      }
+    }
+
+    // 左侧导航区域
+    .sidebar-box {
+      overflow: hidden;
+      overflow-y: auto;
+      // 头部
+      .sidebar-header {
+        padding: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        min-width: 150px;
+      }
+
+      // 菜单项区域
+      .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        min-width: 150px;
+        max-height: calc(
+          100vh - 100px
+        ); /* 调整最大高度，减去头部和底部的高度 */
+        overflow-y: auto; /* 如果内容超出可视区域，显示垂直滚动条 */
+
+        .menu-item {
+          padding: 12px 20px;
+          cursor: pointer;
+          border-radius: 5px;
+          font-size: 16px; // 字体大小适中
+          font-weight: 500; // 默认字体粗细
+          color: #333; // 默认字体颜色
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 8px; // 为了避免菜单项之间重叠
+
+          // hover效果
+          &:hover {
+            background-color: #e6f7ff; // 背景色变换
+          }
+        }
+      }
+    }
+
+    // 折叠状态
+    &.sidebar-closed {
+      width: 0px; /* 折叠时的宽度 */
+    }
+  }
+
+  // 右侧内容区域
+  .content-area {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f4f2ec;
+    transition: margin-left 0.1s ease; /* 控制右侧区域的平滑动画 */
+    overflow: auto;
+
+    .content {
+      margin-top: 60px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
