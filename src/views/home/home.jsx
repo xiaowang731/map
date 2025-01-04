@@ -3,23 +3,27 @@ import { Link } from "react-router-dom"; // 用于路由跳转
 import "./Home.scss"; // 样式文件
 import LeftImg from "@/assets/zuo.svg";
 import RightImg from "@/assets/you.svg";
-
+import MoreImg from "@/assets/more.svg";
+import JiaImg from "@/assets/jia.svg";
 // 菜单数据
 const menuData = [
   {
     title: "菜单项1",
     icon: "📁", // 一级菜单图标
+    haveMore: "true",
     subMenu: [
       {
         title: "子菜单1",
         icon: "📂", // 二级菜单图标
+        haveMore: "true",
         subMenu: [
-          { title: "三级菜单1", to: "/" }, // 路由跳转
-          { title: "三级菜单2", to: "/" },
+          { title: "三级菜单1", to: "/", haveMore: "true" }, // 路由跳转
+          { title: "三级菜单2", to: "/", haveMore: "true" },
         ],
       },
       {
         title: "子菜单2",
+        haveMore: "true",
         icon: "📝", // 二级菜单图标
         subMenu: [
           { title: "三级菜单3", to: "/" },
@@ -67,7 +71,11 @@ const Home = () => {
   const toggleSubDropdown = (menuIndex) => {
     setActiveSubMenu(activeSubMenu === menuIndex ? null : menuIndex);
   };
-
+  //新增
+  const newlyAdd = (e, menu, index) => {
+    e.stopPropagation();
+    console.log(e, menu, index);
+  };
   const renderSubMenu = (subMenu, parentIndex) => {
     return (
       <div className="dropdown-menu">
@@ -77,30 +85,51 @@ const Home = () => {
               className="submenu-title"
               onClick={() => toggleSubDropdown(`${parentIndex}-${index}`)}
             >
-              {item.icon && <span className="menu-icon">{item.icon}</span>}
-              {item.title}
-              {item.subMenu && (
-                <span
-                  className={`arrow ${
-                    activeSubMenu === `${parentIndex}-${index}` ? "open" : ""
-                  }`}
-                ></span>
+              <div>
+                {item.icon && <span className="menu-icon">{item.icon}</span>}
+                {item.title}
+                {item.subMenu && (
+                  <span
+                    className={`arrow ${
+                      activeSubMenu === `${parentIndex}-${index}` ? "open" : ""
+                    }`}
+                  ></span>
+                )}
+              </div>
+              {item.haveMore && (
+                <div className="menu-item-rightIcon">
+                  <button>
+                    <img src={JiaImg} alt="加" />
+                  </button>
+                  <button>
+                    <img src={MoreImg} alt="更多" />
+                  </button>
+                </div>
               )}
             </div>
             {activeSubMenu === `${parentIndex}-${index}` && item.subMenu && (
               <div className="sub-submenu">
                 {item.subMenu.map((subItem, subIndex) => (
-                  <button
+                  <div
                     key={`${parentIndex}-${index}-${subIndex}`}
                     className="submenu-item-btn"
                   >
                     <Link to={subItem.to} className="submenu-link">
-                      {subItem.icon && (
-                        <span className="menu-icon">{subItem.icon}</span>
+                      <div>
+                        {subItem.icon && (
+                          <span className="menu-icon">{subItem.icon}</span>
+                        )}
+                        {subItem.title}
+                      </div>
+                      {item.haveMore && (
+                        <div className="menu-item-rightIcon">
+                          <button>
+                            <img src={MoreImg} alt="更多" />
+                          </button>
+                        </div>
                       )}
-                      {subItem.title}
                     </Link>
-                  </button>
+                  </div>
                 ))}
               </div>
             )}
@@ -122,16 +151,36 @@ const Home = () => {
           <div className="sidebar-header">DevCraft</div>
           <div className="sidebar-content">
             {menuData.map((menu, index) => (
-              <div key={index}>
+              <div key={index} className="menu-item-box">
                 <div
                   className="menu-item"
                   onClick={() => toggleDropdown(index)}
                 >
-                  {menu.icon && <span className="menu-icon">{menu.icon}</span>}
-                  {menu.title}
-                  <span
-                    className={`arrow ${activeMenu === index ? "open" : ""}`}
-                  ></span>
+                  <div>
+                    {menu.icon && (
+                      <span className="menu-icon">{menu.icon}</span>
+                    )}
+                    {menu.title}
+                    <span
+                      className={`arrow ${activeMenu === index ? "open" : ""}`}
+                    ></span>
+                  </div>
+                  {menu.haveMore && (
+                    <div className="menu-item-rightIcon">
+                      <button>
+                        <img
+                          src={JiaImg}
+                          alt="加"
+                          onClick={(e) => {
+                            newlyAdd(e, menu, index);
+                          }}
+                        />
+                      </button>
+                      <button>
+                        <img src={MoreImg} alt="更多" />
+                      </button>
+                    </div>
+                  )}
                 </div>
                 {activeMenu === index &&
                   menu.subMenu &&
