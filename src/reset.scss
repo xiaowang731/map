@@ -1,11 +1,72 @@
+/* 全局重置样式 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
-img {
-  -webkit-user-drag: none;
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background-color: #f4f2ec;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* 清除锚链接的默认下划线 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 清除图片的默认边框 */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+/* 表单元素重置 */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* 清除列表的默认样式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 表格样式 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 防止按钮在点击时的高亮效果 */
+button:focus,
+input:focus {
+  outline: none;
+}
+
 @media (max-width: 1200px) {
   html {
     font-size: 93.75%;
@@ -32,4 +93,29 @@ img {
     font-size: 75%;
     /* 小于 576px 时，1rem = 12px */
   }
+}
+/* 自定义垂直滚动条 */
+::-webkit-scrollbar {
+  width: 0.3125rem; /* 设置垂直滚动条的宽度 */
+  transition: opacity 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+  border-radius: 0.625rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.625rem;
+}
+
+/* 自定义水平滚动条 */
+::-webkit-scrollbar-horizontal {
+  height: 0.3125rem; /* 设置水平滚动条的高度 */
+}
+
+::-webkit-scrollbar-horizontal::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.625rem;
 }
